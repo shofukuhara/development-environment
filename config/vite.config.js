@@ -4,6 +4,8 @@ import globule from 'globule';
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import license from "rollup-plugin-license";
+import { terser } from 'rollup-plugin-terser';
+import fs from 'fs';
 
 // `src` ディレクトリ内の Pug ファイルを取得
 const inputs = {};
@@ -39,9 +41,41 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, '../dist'), // ビルド出力先
     emptyOutDir: true,
+    minify: 'terser',
+    terserOptions: {
+      format: {
+        comments: false,
+      },
+      compress: {
+        drop_console: true,
+      },
+    },
     rollupOptions: {
       input: inputs, // Pug からのエントリーポイントを指定
       output: outputOptions,
+      plugins: [
+        {
+          name: 'add-license-comment',
+          writeBundle: () => {
+            const filePath = path.resolve(__dirname, '../dist/assets/js/index.js');
+            const comment = '/*! Please refer to licence.txt for the details of the license. */\n';
+            fs.readFile(filePath, 'utf8', (err, data) => {
+              if (err) {
+                console.error(err);
+                return;
+              }
+              // 先頭にコメントを追加する
+              const modifiedData = comment + data;
+              fs.writeFile(filePath, modifiedData, 'utf8', (err) => {
+                if (err) {
+                  console.error(err);
+                }
+              });
+            });
+          },
+        },
+        terser(),
+      ],
     },
   },
   plugins: [
