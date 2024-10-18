@@ -13,7 +13,7 @@ const documents = globule.find([path.resolve(__dirname, '../src/**/*.pug')], {
   ignore: [path.resolve(__dirname, '../src/**/_*.pug')],
 });
 
-// Pugファイルをdeitに出力
+// Pugファイルをdistに出力
 documents.forEach((document) => {
   const fileName = path.relative(path.resolve(__dirname, '../src'), document);
   const outputName = fileName.replace(/\.pug$/, '.html');
