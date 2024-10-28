@@ -91,16 +91,16 @@ meter {
 /* revert for bug in Chromium browsers
  - fix for the content editable attribute will work properly.
  - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
-:where([contenteditable]:not([contenteditable='false'])) {
+:where([contenteditable]:not([contenteditable="false"])) {
+  -webkit-line-break: after-white-space;
+  overflow-wrap: break-word;
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
-  overflow-wrap: break-word;
-  -webkit-line-break: after-white-space;
   -webkit-user-select: auto;
 }
 
 /* apply back the draggable feature - exist only in Chromium and Safari */
-:where([draggable='true']) {
+:where([draggable="true"]) {
   -webkit-user-drag: element;
 }
 
@@ -119,10 +119,6 @@ svg {
   overflow: visible;
 }
 
-img {
-  vertical-align: bottom;
-}
-
 picture {
   display: block;
 }
@@ -130,4 +126,5 @@ picture {
 img.i {
   width: 100%;
   height: 100%;
+  vertical-align: bottom;
 }

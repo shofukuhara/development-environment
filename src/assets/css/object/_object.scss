@@ -1,8 +1,8 @@
 // compornent
-@use "../object/compornent/c-compornent";
+@forward '../object/compornent/index';
 
 // element
-@use "../object/element/e-element";
+@forward '../object/element/index';
 
 // project
-@use "../object/project/p-project";
+@forward '../object/project/';

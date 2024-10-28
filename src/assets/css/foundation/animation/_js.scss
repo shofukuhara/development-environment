@@ -1,4 +1,3 @@
-@use "../setting/function" as *;
-@use "../setting/mixin" as *;
-@use "../variable/color" as *;
-@use "../variable/font" as *;
+@use '../setting/index' as *;
+@use '../variable' as *;
+@use 'sass:math';
