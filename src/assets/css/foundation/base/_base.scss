@@ -1,6 +1,12 @@
-@use '../setting/index' as *;
-@use '../variable' as *;
-@use 'sass:math';
+@use "../setting/index" as *;
+@use "../variable" as *;
+@use "sass:math";
+
+:root {
+  --vw: 100vw;
+  --vh: 100vh;
+}
+
 
 .pc-only {
   @include media(sp) {
