@@ -7,11 +7,14 @@
   --vh: 100vh;
 }
 
+body {
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
 
 .pc-only {
   @include media(sp) {
     display: none !important;
-    line-height: math.div(10, 10);
   }
   @include media(pc) {
     display: block;
