@@ -1,8 +1,16 @@
-@use "../setting/function" as *;
-@use "../setting/mixin" as *;
-@use "../variable/color" as *;
-@use "../variable/font" as *;
+@use "../setting/index" as *;
+@use "../variable" as *;
 @use "sass:math";
+
+:root {
+  --vw: 100vw;
+  --vh: 100vh;
+}
+
+body {
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
 
 .pc-only {
   @include media(sp) {

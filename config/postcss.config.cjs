@@ -5,7 +5,7 @@ module.exports = {
       order: "smacss", // alphabetical/ smacss / concentric-css
     }),
     require("postcss-sort-media-queries")({
-      sort: "mobile-first",
+      sort: 'mobile-first'
     }),
   ],
 };

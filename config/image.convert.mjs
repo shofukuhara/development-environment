@@ -7,56 +7,60 @@ function compressImage(filePath) {
   const fileName = path.basename(filePath);
   const outputDir = path.join("src/assets/images/min", path.relative("src/assets/images", dirName));
 
-  // 拡張子を取得
   function getExtension(file) {
     const ext = path.extname(file || "").split(".");
     return ext[ext.length - 1];
   }
   const fileFormat = getExtension(fileName);
 
-  // もしディレクトリがなければ作成
+  // src/assets/images/min 以下は処理しない
+  if (dirName.includes("src/assets/images/min")) {
+    console.log(`\u001b[1;33m 既に圧縮されたディレクトリをスキップします: ${filePath}`);
+    return;
+  }
+
   if (!fs.existsSync("src/assets/images/min")) {
     fs.mkdirSync("src/assets/images/min", { recursive: true });
   }
-  // サブディレクトリがなければ作成
+
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
   if (fileFormat === "jpg" || fileFormat === "jpeg" || fileFormat === "png") {
     sharp(filePath)
-      .toFormat(fileFormat, { quality: 90 })
+      .webp({ quality: 90 })
+      .toFile(path.join(outputDir, fileName.replace(/\.(jpg|jpeg|png)$/i, ".webp")), (err, info) => {
+        if (err) {
+          console.error(`\u001b[1;31m ${fileName}の圧縮に失敗しました:`, err);
+          return;
+        }
+        console.log(`\u001b[1;32m ${fileName}をwebp形式に変換しました。 ${info.size / 1000}KB`);
+      });
+  } else if (fileFormat === "svg") {
+    sharp(filePath)
       .toFile(path.join(outputDir, fileName), (err, info) => {
         if (err) {
           console.error(`\u001b[1;31m ${fileName}の圧縮に失敗しました:`, err);
           return;
         }
-        console.log(`\u001b[1;32m ${fileName}を圧縮しました。 ${info.size / 1000}KB`);
+        console.log(`\u001b[1;32m SVGファイルを圧縮してコピーしました: ${fileName}`);
       });
-  } else if (fileFormat === "svg") {
-    // SVGファイルを圧縮せずにコピー
-    fs.copyFile(filePath, path.join(outputDir, fileName), (err) => {
-      if (err) {
-        console.error(`\u001b[1;31m ${fileName}のコピーに失敗しました:`, err);
-        return;
-      }
-      console.log(`\u001b[1;32m SVGファイルをコピーしました: ${fileName}`);
-    });
   } else {
     console.log(`\u001b[1;31m 対応していないファイル形式です: ${fileName}`);
   }
 }
 
-// src/assets/images ディレクトリ内の全ての画像ファイルを処理
 function processImagesInDirectory(directoryPath) {
   fs.readdirSync(directoryPath).forEach((file) => {
     const filePath = path.join(directoryPath, file);
     if (fs.statSync(filePath).isFile()) {
       compressImage(filePath);
+    } else if (fs.statSync(filePath).isDirectory()) {
+      processImagesInDirectory(filePath);
     }
   });
 }
 
-// build スクリプトの実行
 const imagesDirectory = "src/assets/images";
 processImagesInDirectory(imagesDirectory);
