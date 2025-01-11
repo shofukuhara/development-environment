@@ -6,8 +6,7 @@
   "scripts": {
     "style:lint": "stylelint \"./src/**/*.scss\" --config ./config/.stylelintrc.json",
     "lint": "npm run style:lint -- --fix",
-    "image:min": "node ./config/image.convert.mjs",
-    "dev": "npm run lint && vite --config ./config/vite.config.js && npm run image:min",
+    "dev": "npm run lint && vite --config ./config/vite.config.js",
     "build": "npm run lint && vite build --config ./config/vite.config.js"
   },
   "devDependencies": {
@@ -22,7 +21,6 @@
     "rollup-plugin-license": "^3.5.2",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.75.0",
-    "sharp": "^0.33.5",
     "stylelint": "^16.8.2",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-recommended-scss": "^14.1.0",
