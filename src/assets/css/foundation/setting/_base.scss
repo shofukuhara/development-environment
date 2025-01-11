@@ -1,6 +1,5 @@
-@use "../setting/index" as *;
-@use "../variable" as *;
-@use "sass:math";
+@use "./mixin" as *;
+@use "./function" as *;
 
 :root {
   --vw: 100vw;

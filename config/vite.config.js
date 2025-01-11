@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { terser } from 'rollup-plugin-terser';
 import path from 'path';
 import globule from 'globule';
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static';
 import license from 'rollup-plugin-license';
-import { terser } from 'rollup-plugin-terser';
 import fs from 'fs';
 
 // `src` ディレクトリ内の Pug ファイルを取得して出力名を作成
@@ -67,7 +68,8 @@ export default defineConfig({
   plugins: [
     // pugの開発・ビルド設定
     vitePluginPugStatic({
-      buildOptions: { basedir: path.resolve(__dirname, '../src') },
+      // pretty[true]は非圧縮
+      buildOptions: { basedir: path.resolve(__dirname, '../src'),pretty: true},
       serveOptions: { basedir: path.resolve(__dirname, '../src') },
     }),
     // 使用しているライブラリのライセンス出力
@@ -77,18 +79,18 @@ export default defineConfig({
         includePrivate: true,
       },
     }),
-    // ビルドしたディレクトリをコピー
+    // ビルドしたディレクトリをコピー(wordpress側に出力)
     // viteStaticCopy({
     //   targets: [
     //     {
     //       // 出力元
-    //       src: path.join(__dirname, '../dist/assets/css'),
+    //       src: path.posix.resolve(__dirname, '../dist/assets/css'),
     //        // 出力先
-    //       dest: path.resolve(__dirname, '')
+    //       dest: path.posix.resolve(__dirname, '')
     //     },
     //     {
-    //       src: path.resolve(__dirname, '../dist/assets/js'),
-    //       dest: path.resolve(__dirname, '')
+    //       src: path.posix.resolve(__dirname, '../dist/assets/js'),
+    //       dest: path.posix.resolve(__dirname, '')
     //     }
     //   ],
     // }),
