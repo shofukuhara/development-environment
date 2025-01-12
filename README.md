@@ -43,6 +43,6 @@
 │   │        └── images
 │   └── index.pug
 │
-└── .gitignore
+├── .gitignore
 └── package.json
 ```
