@@ -21,12 +21,14 @@
 │   ├── postcss.config.cjs #PostCSS の設定ファイル（CSS処理用）
 │   ├── setting.json #プロジェクト全体の設定を管理するためのカスタムJSON
 │   └── vite.config.js #Vite の設定ファイル（ビルド・開発サーバー設定）
+│
 ├── dist/  # ビルド後の出力フォルダ
 │   ├── assets/
 │   │   ├── css
 │   │   ├── js
 │   │   └── images
 │   └── index.html
+│
 ├── src/ #開発用フォルダ
 │   ├── assets/
 │   │   ├── css #scss
