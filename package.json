@@ -35,9 +35,12 @@
     "swiper": "^8.4.7"
   },
   "browserslist": [
-    "last 2 version",
+    "last 2 versions",
     "ie >= 11",
     "iOS >= 8.1",
-    "Android >= 4.4"
+    "Android >= 4.4",
+    "Safari >= 9",
+    "Chrome >= 60",
+    "Firefox >= 50"
   ]
 }

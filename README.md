@@ -40,7 +40,7 @@
 │   │        ├── config # 設定用ファイル（メタ情報、SEO設定など）
 │   │        ├── element # 小さなパーツ（タイトル、テキスト、画像など）
 │   │        └── layout # レイアウト（ヘッダー、フッターなど）
-│   ├── public/ # ビルド時にそのままdistに出力(ogpやfivicon)
+│   ├── public/ # ビルド時にそのままdistに出力(ogpやfavicon)
 │   │   └── assets
 │   │        └── images
 │   └── index.pug
