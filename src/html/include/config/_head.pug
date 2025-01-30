@@ -1,7 +1,26 @@
 head
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, initial-scale=1.0")
-  <meta property="og:image" content="./assets/images/img_01.jpg" />
+  meta(name="description", content="")
+  meta(name="keywords", content="")
+  meta(name="author", content="")
+  
+  // OGP
+  meta(property="og:title", content="#{TITLE}")
+  meta(property="og:description", content="This is a description for social sharing.")
+  meta(property="og:image", content="URL_to_image.jpg")
+  meta(property="og:url", content="https://yourwebsite.com/current-page")
+  meta(property="og:type", content="website")
+
+  // Twitter Card
+  meta(name="twitter:card", content="summary_large_image")
+  meta(name="twitter:title", content="#{TITLE}")
+  meta(name="twitter:description", content="This is a description for Twitter.")
+  meta(name="twitter:image", content="URL_to_image.jpg")
+
+  // モバイル関連
+  link(rel="apple-touch-icon", href="path/to/icon.png")
+  title #{TITLE}
+
   include _script.pug
   include _style.pug
-  title #{TITLE}
