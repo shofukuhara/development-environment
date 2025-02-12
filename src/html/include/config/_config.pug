@@ -1,7 +1,7 @@
 //- 画像パス
-if PAGE_TYPE === 'top'
+if PATH_TYPE === 'main'
   - var IMG_PATH = "./assets/images/";
-else
+else if PATH_TYPE === 'sub'
   - var IMG_PATH = "../assets/images/";
 
 //- //リンクパス

@@ -8,10 +8,10 @@
 
 html {
   @include media(sp) {
-    font-size: calc(14/375*var(--vw));
+    font-size: calc(14 / 375 * var(--vw));
   }
   @include media(pc) {
-    font-size: calc(14/1440*var(--vw));
+    font-size: calc(14 / 1440 * var(--vw));
   }
 }
 

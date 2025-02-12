@@ -13,20 +13,17 @@
 //   @return ($rate * $size * 1vh);
 // }
 
-
 // サイズ可変(rem)
 //htmlのフォントサイズ基準
 // PC 用の rem 計算
 // @function pc($size, $viewport: 1440) {
-//   @return calc(#{$size} / 14 * 1rem); 
+//   @return calc(#{$size} / 14 * 1rem);
 // }
 
 // // SP 用の rem 計算
 // @function sp($size, $viewport: 375) {
 //   @return calc(#{$size} / 14 * 1rem);
 // }
-
-
 
 // @function clamp($minFont) {
 //   $minWidth: 375;
