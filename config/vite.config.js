@@ -20,16 +20,39 @@ const getPugInputs = () => {
   }, {});
 };
 
+// 画像ファイルのパスを作成
+const getImageAssetPath = (assetInfo, originalDir, fileName) => {
+  if (originalDir.includes('assets/images/')) {
+    return `assets/images/${originalDir.replace(/^assets\/images\//, '')}/${fileName}`;
+  }
+  return `assets/images/${fileName}`;
+};
+
 // 出力オプション設定
 const outputOptions = {
-  entryFileNames: 'assets/js/index.js',
-  chunkFileNames: 'assets/js/index.js',
+  entryFileNames: 'assets/js/index.js', // エントリーファイルの出力先
+  chunkFileNames: 'assets/js/index.js', // チャンクファイルの出力先
   assetFileNames: (assetInfo) => {
-    if (/\.(gif|jpeg|jpg|png|svg|webp)$/.test(assetInfo.name)) return 'assets/images/[name].[ext]';
-    if (/\.css$/.test(assetInfo.name)) return 'assets/css/[name].[ext]';
-    return 'assets/[name].[ext]';
+    const fileName = path.basename(assetInfo.name); // ファイル名を取得
+    const originalDir = assetInfo.originalFileName
+      ? path.dirname(assetInfo.originalFileName).replace(/\\/g, '/') // Windowsパスの\を/に変換
+      : '';
+
+    // 画像の場合
+    if (/\.(gif|jpeg|jpg|png|svg|webp)$/.test(assetInfo.name)) {
+      return getImageAssetPath(assetInfo, originalDir, fileName);
+    }
+
+    // CSSの場合
+    if (/\.css$/.test(assetInfo.name)) {
+      return 'assets/css/[name].[ext]';
+    }
+
+    // その他のファイル
+    return `assets/${fileName}`;
   },
 };
+
 
 // ライセンスコメント追加プラグイン
 const addLicenseComment = () => ({

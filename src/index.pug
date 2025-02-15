@@ -1,8 +1,9 @@
 - var page = 'top'; //metaの出しわけ
 - var PATH_TYPE = "main"; //パスの出しわけ
 include ./html/include/config/_config
-include ./html/include/compornent/_include
+include ./html/include/component/_include
 include ./html/include/meta/_data
+include ./html/include/locales/_textList
 
 
 block page
@@ -10,8 +11,6 @@ doctype html
 html(lang="ja")
   include ./html/include/config/_head
   body.p-top(data-page="top")
-    //- img.i(src=IMG_PATH + "img_01.webp" alt="" loading="lazy")
-    //- p.text
-    //-   | テキスト
     include ./html/include/layout/_header
     include ./html/include/layout/_footer
+    p.item!= textList['ja'].section01.title

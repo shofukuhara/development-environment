@@ -1,19 +1,20 @@
 @use "./mixin" as *;
 @use "./function" as *;
+@use "../variable/font" as *;
 
 :root {
   --vw: 100vw;
   --vh: 100vh;
 }
 
-html {
-  @include media(sp) {
-    font-size: calc(14 / 375 * var(--vw));
-  }
-  @include media(pc) {
-    font-size: calc(14 / 1440 * var(--vw));
-  }
-}
+// html {
+//   @include media(sp) {
+//     font-size: calc(14 / 375 * var(--vw));
+//   }
+//   @include media(pc) {
+//     font-size: calc(14 / 1440 * var(--vw));
+//   }
+// }
 
 body {
   font-feature-settings: "palt";
