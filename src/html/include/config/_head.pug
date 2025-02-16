@@ -21,6 +21,10 @@ head
   // モバイル関連
   link(rel="apple-touch-icon" href="path/to/icon.png")
 
-  //スタイル・スクリプト
-  include _style.pug
-  include _script.pug
+  //CSS・JS
+  if PATH_TYPE === 'main'
+    script(src="./assets/js/index.js" type="module" defer="defer")
+    link(rel="stylesheet" href="./assets/css/index.scss")
+  else if PATH_TYPE === 'sub'
+    script(src="../assets/js/index.js" type="module" defer="defer")
+    link(rel="stylesheet" href="../assets/css/index.scss")

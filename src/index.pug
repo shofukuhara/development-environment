@@ -1,7 +1,7 @@
 - var page = 'top'; //metaの出しわけ
 - var PATH_TYPE = "main"; //パスの出しわけ
 include ./html/include/config/_config
-include ./html/include/component/_include
+include ./html/include/components/_include
 include ./html/include/meta/_data
 include ./html/include/locales/_textList
 
@@ -11,6 +11,7 @@ doctype html
 html(lang="ja")
   include ./html/include/config/_head
   body.p-top(data-page="top")
-    include ./html/include/layout/_header
-    include ./html/include/layout/_footer
+    include ./html/include/layouts/_header
     p.item!= textList['ja'].section01.title
+    include ./html/include/layouts/_footer
+    

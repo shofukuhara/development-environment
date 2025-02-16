@@ -1,16 +1,15 @@
 ### nodeバージョン
+
 - node v18.20.0
 - npm v10.5.0
 
-
-| コマンド                    | アクション                                  |
-| :------------------------ | :------------------------------------------|
-| `npm install`             | 依存関係をインストール                         |
-| `npm run dev`             | ローカル開発サーバー localhost:3000起動        |
-| `npm run build`           | ビルドファイル出力 `./dist/`                  |
-| `npm run style:lint`      | SCSSファイルのLintチェックを実行               |
-| `npm run lint`            | Lintチェックを実行して、自動的に修正も行う        |
-
+| コマンド             | アクション                                 |
+| :------------------- | :----------------------------------------- |
+| `npm install`        | 依存関係をインストール                     |
+| `npm run dev`        | ローカル開発サーバー localhost:3000起動    |
+| `npm run build`      | ビルドファイル出力 `./dist/`               |
+| `npm run style:lint` | SCSSファイルのLintチェックを実行           |
+| `npm run lint`       | Lintチェックを実行して、自動的に修正も行う |
 
 ```text
 /
@@ -36,12 +35,15 @@
 │   │   └── images # 非圧縮
 │   ├── html/ # Pugの部品を格納
 │   │   └── include
-│   │        ├── compornent # UIコンポーネント（ボタン、カードなど）
-│   │        ├── config # 設定用ファイル（メタ情報、SEO設定など）
-│   │        ├── element # 小さなパーツ（タイトル、テキスト、画像など）
-│   │        └── layout # レイアウト（ヘッダー、フッターなど）
-│   ├── public/ # ビルド時にそのままdistに出力(ogpやfavicon)
+│   │        ├── components # UIコンポーネント（ボタン、カードなど）
+│   │        ├── config # 設定用ファイル（head,パス関連）
+│   │        ├── elements # 小さなパーツ（タイトル、テキスト、画像など）
+│   │        ├── layouts # レイアウト（ヘッダー、フッターなど）
+│   │        ├── locales # テキストをオブジェクトで管理（多言語とかで使用）
+│   │        └── meta # meta周りの設定（オブジェクトで管理）
+│   ├── public/ # ビルド時にそのままdistに出力(ogpやfavicon,フォント)
 │   │   └── assets
+│   │        ├── fonts
 │   │        └── images
 │   └── index.pug
 │
