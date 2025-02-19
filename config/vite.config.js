@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import path from 'path';
 import globule from 'globule';
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static';

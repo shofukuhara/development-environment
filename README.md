@@ -5,11 +5,12 @@
 
 | コマンド             | アクション                                 |
 | :------------------- | :----------------------------------------- |
-| `npm install`        | 依存関係をインストール                     |
-| `npm run dev`        | ローカル開発サーバー localhost:3000起動    |
-| `npm run build`      | ビルドファイル出力 `./dist/`               |
-| `npm run style:lint` | SCSSファイルのLintチェックを実行           |
-| `npm run lint`       | Lintチェックを実行して、自動的に修正も行う |
+| `npm install`        | 依存関係をインストール                        |
+| `npm run dev`        | ローカル開発サーバー localhost:3000起動       |
+| `npm run build`      | ビルドファイル出力 `./dist/`                 |
+| `npm run style:lint` | SCSSファイルのLintチェックを実行              |
+| `npm run lint`       | Lintチェックを実行して、自動的に修正も行う      |
+| `npm run renameToPhp`| distに出力されたindex.htmlをindex.phpに変換  |
 
 ```text
 /
@@ -18,6 +19,7 @@
 │   ├── .prettierrc # Prettier の設定ファイル
 │   ├── .stylelintrc.json # Stylelint の設定ファイル（CSSのコード品質をチェック）
 │   ├── postcss.config.cjs # PostCSS の設定ファイル（CSS処理用）
+│   ├── rename-index-to-php.mjs # distに出力されたindex.htmlをindex.phpに変換
 │   ├── setting.json # プロジェクト全体の設定を管理するためのカスタムJSON
 │   └── vite.config.js # Vite の設定ファイル（ビルド・開発サーバー設定）
 │
