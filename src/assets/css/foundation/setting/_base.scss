@@ -2,10 +2,6 @@
 @use "./function" as *;
 @use "../variable/font" as *;
 
-:root {
-  --vw: 100vw;
-  --vh: 100vh;
-}
 
 // html {
 //   @include media(sp) {

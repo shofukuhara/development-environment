@@ -20,7 +20,7 @@ export class BreakpointObserver {
     if (e.matches) {
       this.callback(true); // pc（768px以上）
     } else {
-      this.callback(false); // sp（768px以下）
+      this.callback(false); // sp（767.9px以下）
     }
   }
 }
