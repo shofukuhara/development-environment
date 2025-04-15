@@ -2,7 +2,7 @@
 - var PATH_TYPE = "main"; //パスの出しわけ
 include ./html/include/config/_config
 include ./html/include/components/_include
-include ./html/include/meta/_data
+include ./html/include/data/_data
 
 
 block page
@@ -11,6 +11,5 @@ html(lang="ja")
   include ./html/include/config/_head
   body.p-top(data-page="top")
     include ./html/include/layouts/_header
-    p.item!= textList['ja'].section01.title
     include ./html/include/layouts/_footer
     

@@ -8,21 +8,9 @@
   @return calc(#{$size} / #{$viewport} * 100vw);
 }
 
-
 // @function pc_vh($size, $viewport: 800) {
-//   @return calc(#{$size} / #{$viewport} * 100vh);
-// }
-
-// サイズ可変(rem)
-//htmlのフォントサイズ基準
-// PC 用の rem 計算
-// @function pc($size, $viewport: 1440) {
-//   @return calc(#{$size} / 14 * 1rem);
-// }
-
-// // SP 用の rem 計算
-// @function sp($size, $viewport: 375) {
-//   @return calc(#{$size} / 14 * 1rem);
+//   $rate: math.div(100, $viewport);
+//   @return ($rate * $size * 1vh);
 // }
 
 // @function clamp($minFont) {

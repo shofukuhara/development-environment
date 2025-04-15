@@ -1,16 +1,4 @@
-@use "./mixin" as *;
-@use "./function" as *;
-@use "../variable/font" as *;
-
-
-// html {
-//   @include media(sp) {
-//     font-size: calc(14 / 375 * var(--vw));
-//   }
-//   @include media(pc) {
-//     font-size: calc(14 / 1440 * var(--vw));
-//   }
-// }
+@use "../global/index.scss" as *;
 
 body {
   font-feature-settings: "palt";

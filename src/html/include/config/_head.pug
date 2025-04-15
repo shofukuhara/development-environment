@@ -1,22 +1,22 @@
 head
   meta(charset="UTF-8")
-  title= meta[page]['title']
+  title= data[page]['title']
   meta(name="viewport" content="width=device-width, initial-scale=1.0")
-  meta(name="description" content=meta[page]['description'])
-  meta(name="keywords" content=meta[page]['keywords'])
+  meta(name="description" content=data[page]['description'])
+  meta(name="keywords" content=data[page]['keywords'])
 
   // OG
-  meta(property="og:title" content=meta[page]['title'])
-  meta(property="og:description" content=meta[page]['description'])
-  meta(property="og:image" content=meta[page]['image'])
-  meta(property="og:url" content=meta[page]['url'])
+  meta(property="og:title" content=data[page]['title'])
+  meta(property="og:description" content=data[page]['description'])
+  meta(property="og:image" content=data[page]['image'])
+  meta(property="og:url" content=data[page]['url'])
   meta(property="og:type" content="website")
 
   // Twitter Card
   meta(name="twitter:card" content="summary_large_image")
-  meta(name="twitter:title" content=meta[page]['title'])
-  meta(name="twitter:description" content=meta[page]['description'])
-  meta(name="twitter:image" content=meta[page]['image'])
+  meta(name="twitter:title" content=data[page]['title'])
+  meta(name="twitter:description" content=data[page]['description'])
+  meta(name="twitter:image" content=data[page]['image'])
 
   // モバイル関連
   link(rel="apple-touch-icon" href="path/to/icon.png")

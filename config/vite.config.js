@@ -39,7 +39,7 @@ const outputOptions = {
       : '';
 
     // 画像の場合
-    if (/\.(gif|jpeg|jpg|png|svg|webp)$/.test(assetInfo.name)) {
+    if (/\.(gif|jpeg|jpg|png|svg|webp|mp4)$/.test(assetInfo.name)) {
       return getImageAssetPath(assetInfo, originalDir, fileName);
     }
 
@@ -73,6 +73,8 @@ export default defineConfig({
   base: './',
   build: {
     outDir: path.resolve(__dirname, '../dist'),
+    // すべての画像を外部ファイルとして扱う
+    assetsInlineLimit: 0,
     emptyOutDir: true,
     minify: 'terser',
     // jsのビルド設定
