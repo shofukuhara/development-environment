@@ -5,7 +5,7 @@ import path from 'path';
 import globule from 'globule';
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static';
 import license from 'rollup-plugin-license';
-import fs from 'fs';
+import { URL } from "url";
 
 // `src` ディレクトリ内の Pug ファイルを取得して出力名を作成
 const getPugInputs = () => {
@@ -59,7 +59,7 @@ const addLicenseComment = () => ({
   name: 'add-license-comment',
   writeBundle: () => {
     const filePath = path.resolve(__dirname, '../dist/assets/js/index.js');
-    const comment = '/*! Please refer to licence.txt for the details of the license. */\n';
+    const comment = '/*! Please refer to license.txt for the details of the license. */\n';
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) return console.error(err);
       const modifiedData = comment + data;
