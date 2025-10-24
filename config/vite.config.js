@@ -6,6 +6,7 @@ import globule from 'globule';
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static';
 import license from 'rollup-plugin-license';
 import { URL } from "url";
+import fs from 'fs';
 
 // `src` ディレクトリ内の Pug ファイルを取得して出力名を作成
 const getPugInputs = () => {
@@ -14,7 +15,8 @@ const getPugInputs = () => {
   });
   return documents.reduce((acc, document) => {
     const relativePath = path.relative(path.resolve(__dirname, '../src'), document);
-    const outputName = relativePath.replace(/\.pug$/, '.html');
+   //パス区切り文字を正規化
+    const outputName = relativePath.replace(/\\/g, '/').replace(/\.pug$/, '.html');
     acc[outputName] = document;
     return acc;
   }, {});
@@ -22,20 +24,23 @@ const getPugInputs = () => {
 
 // 画像ファイルのパスを作成
 const getImageAssetPath = (assetInfo, originalDir, fileName) => {
-  if (originalDir.includes('assets/images/')) {
-    return `assets/images/${originalDir.replace(/^assets\/images\//, '')}/${fileName}`;
+  // Windows対応: パス区切り文字を正規化
+  const normalizedDir = originalDir.replace(/\\/g, '/');
+  
+  if (normalizedDir.includes('assets/images/')) {
+    return `assets/images/${normalizedDir.replace(/^assets\/images\//, '')}/${fileName}`;
   }
   return `assets/images/${fileName}`;
 };
 
 // 出力オプション設定
 const outputOptions = {
-  entryFileNames: 'assets/js/index.js', // エントリーファイルの出力先
-  chunkFileNames: 'assets/js/index.js', // チャンクファイルの出力先
+  entryFileNames: 'assets/js/index.js',
+  chunkFileNames: 'assets/js/index.js',
   assetFileNames: (assetInfo) => {
-    const fileName = path.basename(assetInfo.name); // ファイル名を取得
+    const fileName = path.basename(assetInfo.name);
     const originalDir = assetInfo.originalFileName
-      ? path.dirname(assetInfo.originalFileName).replace(/\\/g, '/') // Windowsパスの\を/に変換
+      ? path.dirname(assetInfo.originalFileName).replace(/\\/g, '/')
       : '';
 
     // 画像の場合
@@ -52,7 +57,6 @@ const outputOptions = {
     return `assets/${fileName}`;
   },
 };
-
 
 // ライセンスコメント追加プラグイン
 const addLicenseComment = () => ({
@@ -73,15 +77,11 @@ export default defineConfig({
   base: './',
   build: {
     outDir: path.resolve(__dirname, '../dist'),
-    // すべての画像を外部ファイルとして扱う
     assetsInlineLimit: 0,
     emptyOutDir: true,
     minify: 'terser',
-    // jsのビルド設定
     terserOptions: {
-      // コメント削除
       format: { comments: false },
-      // consoleの削除
       compress: { drop_console: true },
     },
     rollupOptions: {
@@ -91,39 +91,19 @@ export default defineConfig({
     },
   },
   plugins: [
-    // pugの開発・ビルド設定
     vitePluginPugStatic({
-      // pretty[true]は非圧縮
-      buildOptions: { basedir: path.resolve(__dirname, '../src'),pretty: true},
+      buildOptions: { basedir: path.resolve(__dirname, '../src'), pretty: true },
       serveOptions: { basedir: path.resolve(__dirname, '../src') },
     }),
-    // 使用しているライブラリのライセンス出力
     license({
       thirdParty: {
         output: path.join(__dirname, '../dist/assets/js/license.txt'),
         includePrivate: true,
       },
     }),
-    // ビルドしたディレクトリをコピー(wordpress側に出力)
-    // viteStaticCopy({
-    //   targets: [
-    //     {
-    //       // 出力元
-    //       src: path.posix.resolve(__dirname, '../dist/assets/css'),
-    //        // 出力先
-    //       dest: path.posix.resolve(__dirname, '')
-    //     },
-    //     {
-    //       src: path.posix.resolve(__dirname, '../dist/assets/js'),
-    //       dest: path.posix.resolve(__dirname, '')
-    //     }
-    //   ],
-    // }),
   ],
-  // 開発時source map出力
   css: { devSourcemap: true },
   postcss: path.resolve(__dirname, './postcss.config.cjs'),
-  // ローカルサーバー立ち上げ
   server: {
     open: true,
     host: true,
